@@ -11,19 +11,41 @@
 
 
 
+// import dotenv from "dotenv";
+// dotenv.config();
+
+// import connectDB from "./db/db.js";
+// import app from "./app.js";
+
+// connectDB();
+
+// app.listen(8000, () => {
+//   console.log("Server running on port 8000");
+// });
+
+
+
 import dotenv from "dotenv";
 dotenv.config();
 
 import connectDB from "./db/db.js";
 import app from "./app.js";
 
-connectDB();
+connectDB()
 
-app.listen(8000, () => {
-  console.log("Server running on port 8000");
-});
+.then(() => {
+     app.listen(process.env.Port || 8000, () => {
+        console.log(`Server is running at port : ${process.env.PORT}`);
+     })
+})
 
+.catch((err) => {
+    console.log(("MONGO DB connection failed !!! ", err));
+})
 
+// app.listen(8000, () => {
+//   console.log("Server running on port 8000");
+// });
 
 
 
